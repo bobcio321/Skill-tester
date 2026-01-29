@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillTester</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <div class="container">
+        <header class="main-header">
+            <div class="logo-wrapper">
+                <div class="logo-text">
+                    <h1>SkillTester</h1>
+                    <p class="tagline">Skill tester platform</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main -->
+        <div id="menu" class="menu-screen">
+            <h2 class="section-title">Select Your Challenge</h2>
+            <div class="test-grid">
+                <div class="test-card" data-test="reaction">
+                    <div class="card-header">
+                        <div class="test-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                            </svg>
+                        </div>
+                        <span class="difficulty-badge">Quick</span>
+                    </div>
+                    <h3>Reaction Speed</h3>
+                    <p>Measure your response time with millisecond precision</p>
+                    <div class="card-footer">
+                        <span class="test-type">Speed Test</span>
+                        <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="test-card" data-test="memory">
+                    <div class="card-header">
+                        <div class="test-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                            </svg>
+                        </div>
+                        <span class="difficulty-badge">Medium</span>
+                    </div>
+                    <h3>Pattern Memory</h3>
+                    <p>Test your visual memory with progressive sequences</p>
+                    <div class="card-footer">
+                        <span class="test-type">Memory Test</span>
+                        <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="test-card" data-test="typing">
+                    <div class="card-header">
+                        <div class="test-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="6" width="20" height="12" rx="2"/>
+                                <path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M6 14h.01M10 14h.01M14 14h8"/>
+                            </svg>
+                        </div>
+                        <span class="difficulty-badge">Advanced</span>
+                    </div>
+                    <h3>Typing Mastery</h3>
+                    <p>Measure your typing speed and accuracy in real-time</p>
+                    <div class="card-footer">
+                        <span class="test-type">WPM Test</span>
+                        <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="test-card" data-test="number">
+                    <div class="card-header">
+                        <div class="test-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M7 20h10M7 16h10M7 8h10M3 12h2m14 0h2"/>
+                                <rect x="6" y="4" width="12" height="16" rx="2"/>
+                            </svg>
+                        </div>
+                        <span class="difficulty-badge">Hard <span class="new-badge">NEW</span></span>
+                    </div>
+                    <h3>Numeric Recall</h3>
+                    <p>Challenge your short-term memory with number sequences</p>
+                    <div class="card-footer">
+                        <span class="test-type">Digit Test</span>
+                        <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reaction -->
+        <div id="reaction-test" class="test-screen hidden">
+            <div class="test-header">
+                <h2>Reaction Speed Test</h2>
+                <button class="btn-back" id="back-from-reaction">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                    Back
+                </button>
+            </div>
+            <p class="instructions">Click the box as soon as it turns green</p>
+            <div class="reaction-container">
+                <div id="reaction-box" class="reaction-box">
+                    <div class="reaction-content">
+                        <span id="reaction-text">Click to Start</span>
+                    </div>
+                </div>
+                <div id="reaction-stats" class="test-stats hidden">
+                    <div class="stat-box">
+                        <span class="stat-label">Last Result</span>
+                        <span class="stat-value" id="last-reaction">-</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">Average</span>
+                        <span class="stat-value" id="avg-reaction">-</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">Best</span>
+                        <span class="stat-value" id="best-reaction">-</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Memory -->
+        <div id="memory-test" class="test-screen hidden">
+            <div class="test-header">
+                <h2>Pattern Memory Test</h2>
+                <button class="btn-back" id="back-from-memory">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                    Back
+                </button>
+            </div>
+            <div class="level-indicator">
+                <span>Level: <strong id="memory-level">1</strong></span>
+                <span>Sequence Length: <strong id="sequence-length">3</strong></span>
+            </div>
+            <div id="memory-grid" class="memory-grid"></div>
+            <div id="memory-message" class="test-message"></div>
+            <button id="memory-start-btn" class="btn-primary">Start Level 1</button>
+        </div>
+
+        <!-- Typing -->
+        <div id="typing-test" class="test-screen hidden">
+            <div class="test-header">
+                <h2>Typing Speed Test</h2>
+                <button class="btn-back" id="back-from-typing">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                    Back
+                </button>
+            </div>
+            <div class="typing-stats-live">
+                <div class="stat-box-inline">
+                    <span class="stat-label">Time</span>
+                    <span class="stat-value" id="typing-time">0s</span>
+                </div>
+                <div class="stat-box-inline">
+                    <span class="stat-label">WPM</span>
+                    <span class="stat-value" id="typing-wpm">0</span>
+                </div>
+                <div class="stat-box-inline">
+                    <span class="stat-label">Accuracy</span>
+                    <span class="stat-value" id="typing-accuracy">100%</span>
+                </div>
+            </div>
+            <div id="typing-text" class="typing-text"></div>
+            <textarea id="typing-input" class="typing-input" placeholder="Click 'Start Test' to begin..." disabled></textarea>
+            <button id="typing-start-btn" class="btn-primary">Start Test</button>
+        </div>
+
+        <!-- Number Recall -->
+        <div id="number-test" class="test-screen hidden">
+            <div class="test-header">
+                <h2>Numeric Recall Test</h2>
+                <button class="btn-back" id="back-from-number">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                    Back
+                </button>
+            </div>
+            <div class="level-indicator">
+                <span>Level: <strong id="number-level">1</strong></span>
+                <span>Digits: <strong id="number-digits">3</strong></span>
+            </div>
+            <div id="number-display" class="number-display">
+                <div class="number-content">Ready to start?</div>
+            </div>
+            <input type="text" id="number-input" class="number-input" placeholder="Enter the number..." style="display: none;">
+            <div id="number-message" class="test-message"></div>
+            <button id="number-start-btn" class="btn-primary">Start Level 1</button>
+            <button id="number-submit-btn" class="btn-primary" style="display: none;">Submit Answer</button>
+        </div>
+
+        <footer class="main-footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>SkillTester</h3>
+                    <p>Professional Skills Assessment Platform</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Tests</h4>
+                    <ul>
+                        <li><a href="#reaction">Reaction Speed</a></li>
+                        <li><a href="#memory">Pattern Memory</a></li>
+                        <li><a href="#typing">Typing Mastery</a></li>
+                        <li><a href="#number">Numeric Recall <span class="new-badge">NEW</span></a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <p>Test and improve your cognitive and physical skills with our comprehensive assessment tools.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SkillTester. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
